@@ -70,7 +70,7 @@ st.markdown("""
         }
     }
 </style>
-""", unsafe_html=True)
+""", unsafe_allow_html=True)
 
 # Initialize Session State
 if "step" not in st.session_state:
@@ -129,14 +129,14 @@ st.markdown(f"""
         <span>{progress_percentage}% Complete</span>
     </div>
 </div>
-""", unsafe_html=True)
+""", unsafe_allow_html=True)
 st.progress(progress_percentage / 100.0)
 
-st.markdown('<div class="saas-card">', unsafe_html=True)
+st.markdown('<div class="saas-card">', unsafe_allow_html=True)
 
 if st.session_state.step == 1:
-    st.markdown('<div class="question-title">Step 1: Your Age</div>', unsafe_html=True)
-    st.markdown('<div class="question-desc">How old are you? (Medication dosages and recommendations adapt based on age bracket)</div>', unsafe_html=True)
+    st.markdown('<div class="question-title">Step 1: Your Age</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-desc">How old are you? (Medication dosages and recommendations adapt based on age bracket)</div>', unsafe_allow_html=True)
     
     age = st.number_input(
         "Age (in years)",
@@ -152,8 +152,8 @@ if st.session_state.step == 1:
         st.button("Next Question →", on_click=next_step, type="primary")
 
 elif st.session_state.step == 2:
-    st.markdown('<div class="question-title">Step 2: Biological Sex</div>', unsafe_html=True)
-    st.markdown('<div class="question-desc">What is your biological sex?</div>', unsafe_html=True)
+    st.markdown('<div class="question-title">Step 2: Biological Sex</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-desc">What is your biological sex?</div>', unsafe_allow_html=True)
     
     sex = st.selectbox(
         "Biological Sex",
@@ -169,8 +169,8 @@ elif st.session_state.step == 2:
         st.button("Next Question →", on_click=next_step, type="primary")
 
 elif st.session_state.step == 3:
-    st.markdown('<div class="question-title">Step 3: Blood Pressure Level</div>', unsafe_html=True)
-    st.markdown('<div class="question-desc">Do you know your recent blood pressure reading category?</div>', unsafe_html=True)
+    st.markdown('<div class="question-title">Step 3: Blood Pressure Level</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-desc">Do you know your recent blood pressure reading category?</div>', unsafe_allow_html=True)
     
     known = st.checkbox("I know my blood pressure reading", value=st.session_state.bp_known)
     st.session_state.bp_known = known
@@ -193,8 +193,8 @@ elif st.session_state.step == 3:
         st.button("Next Question →", on_click=next_step, type="primary")
 
 elif st.session_state.step == 4:
-    st.markdown('<div class="question-title">Step 4: Cholesterol Level</div>', unsafe_html=True)
-    st.markdown('<div class="question-desc">Do you know your typical cholesterol reading category?</div>', unsafe_html=True)
+    st.markdown('<div class="question-title">Step 4: Cholesterol Level</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-desc">Do you know your typical cholesterol reading category?</div>', unsafe_allow_html=True)
     
     known = st.checkbox("I know my cholesterol reading", value=st.session_state.cholesterol_known)
     st.session_state.cholesterol_known = known
@@ -217,8 +217,8 @@ elif st.session_state.step == 4:
         st.button("Next Question →", on_click=next_step, type="primary")
 
 elif st.session_state.step == 5:
-    st.markdown('<div class="question-title">Step 5: Sodium-to-Potassium Ratio</div>', unsafe_html=True)
-    st.markdown('<div class="question-desc">Do you know your biological Sodium-to-Potassium Ratio (Na_to_K)?</div>', unsafe_html=True)
+    st.markdown('<div class="question-title">Step 5: Sodium-to-Potassium Ratio</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-desc">Do you know your biological Sodium-to-Potassium Ratio (Na_to_K)?</div>', unsafe_allow_html=True)
     
     known = st.checkbox("I know my Sodium-to-Potassium ratio", value=st.session_state.na_to_k_known)
     st.session_state.na_to_k_known = known
@@ -243,8 +243,8 @@ elif st.session_state.step == 5:
         st.button("Review Summary →", on_click=next_step, type="primary")
 
 elif st.session_state.step == 6:
-    st.markdown('<div class="question-title">Summary of Patient Profile</div>', unsafe_html=True)
-    st.markdown('<div class="question-desc">Review details before retrieving recommended medication suggestions.</div>', unsafe_html=True)
+    st.markdown('<div class="question-title">Summary of Patient Profile</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-desc">Review details before retrieving recommended medication suggestions.</div>', unsafe_allow_html=True)
     
     show_bp = st.session_state.bp if st.session_state.bp_known else "Unknown (using Normal)"
     show_chol = st.session_state.cholesterol if st.session_state.cholesterol_known else "Unknown (using Normal)"
@@ -258,7 +258,7 @@ elif st.session_state.step == 6:
     | **Blood Pressure Level** | {show_bp} |
     | **Cholesterol Level** | {show_chol} |
     | **Sodium-to-Potassium Ratio** | {show_nak} |
-    """, unsafe_html=True)
+    """, unsafe_allow_html=True)
     
     st.write("")
     
@@ -298,7 +298,7 @@ elif st.session_state.step == 6:
                     ⚠️ DISCLAIMER: This is a decision-support demonstration tool. Consult a qualified physician before taking any medication.
                 </div>
             </div>
-            """, unsafe_html=True)
+            """, unsafe_allow_html=True)
             st.balloons()
         except Exception as e:
             st.error(f"Prediction failed: {e}")
@@ -306,4 +306,4 @@ elif st.session_state.step == 6:
     st.write("")
     st.button("🔄 Restart Assessment", on_click=reset_wizard)
 
-st.markdown('</div>', unsafe_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
